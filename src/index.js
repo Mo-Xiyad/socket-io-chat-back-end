@@ -33,12 +33,12 @@ io.on("connection", (socket) => {
     socket.join(room);
     console.log(socket.rooms);
 
-    socket.emit("loggedin");
+    socket.emit("loggedIn");
     socket.to(room).emit("newConnection");
   });
 
   // When we get a message from the frontend we broadcast it to all users in the room
-  socket.on("sendmessage", ({ message, room }) => {
+  socket.on("sendMessage", ({ message, room }) => {
     //socket.broadcast.emit("message", message) // this is sending to all users except the sender
     socket.to(room).emit("message", message); // this is sending to all users in the room except the sender
   });
